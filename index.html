@@ -18,7 +18,7 @@
     <style>
       .installment-form,
       .complex-installment-form {
-        max-width: 60%;
+        max-width: 50%;
         margin: 0 auto;
         text-align: center;
       }
@@ -26,6 +26,13 @@
       .years,
       .monthly-payment {
         text-align: left;
+      }
+
+      @media screen and (max-width: 50rem) {
+        .installment-form,
+        .complex-installment-form {
+          max-width: 90%;
+        }
       }
 
       /* Chrome, Safari, Edge, Opera */
@@ -117,7 +124,7 @@
         </h3>
       </div>
 
-      <button type="number" class="btn btn-lg btn-outline-primary">
+      <button type="submit" class="w-100 btn btn-lg btn-outline-primary">
         Submit
       </button>
     </form>
@@ -200,7 +207,7 @@
         <h3 class="years py-2 mb-4">Years :<span class="years-num"></span></h3>
       </div>
 
-      <button type="number" class="btn btn-lg btn-outline-primary">
+      <button type="submit" class="w-100 btn btn-lg btn-outline-primary">
         Submit
       </button>
     </form>
