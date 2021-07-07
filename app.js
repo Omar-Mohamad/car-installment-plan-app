@@ -12,16 +12,21 @@ form.addEventListener("submit", (e) => {
     rate = document.querySelector("#rate"),
     years = document.querySelector("#years"),
     output = document.querySelector(".monthly-payment-num"),
-    ratePrice = 0,
-    yearlyPrice = 0,
+    monthsCount = 0,
     monthlyPrice = 0;
 
-  totalPrice.value -= downPayment.value;
-  rate.value /= 100;
-  yearlyPrice = totalPrice.value / years.value;
-  ratePrice = yearlyPrice * rate.value;
-  yearlyPrice += ratePrice;
-  monthlyPrice = (yearlyPrice / 12).toFixed(2);
+  let totalPriceValue = parseInt(totalPrice.value),
+    downPaymentValue = parseInt(downPayment.value),
+    rateValue = parseInt(rate.value),
+    yearsValue = parseInt(years.value);
+
+  totalPriceValue -= downPaymentValue;
+  rateValue *= yearsValue;
+  rateValue += 100;
+  rateValue /= 100;
+  totalPriceValue *= rateValue;
+  monthsCount = yearsValue * 12;
+  monthlyPrice = (totalPriceValue / monthsCount).toFixed(2);
 
   totalPrice.value = "";
   downPayment.value = "";
@@ -33,12 +38,13 @@ form.addEventListener("submit", (e) => {
 
 // Assignment B
 
+/*
+ 
 const form2 = document.querySelector(".complex-installment-form");
 
 form2.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  console.log("submited");
   // geting inputs values
 
   let totalPrice = document.querySelector("#assignment-b-totalPrice"),
@@ -49,16 +55,32 @@ form2.addEventListener("submit", (e) => {
     ratePrice = 0,
     yearlyPrice = 0;
 
-  totalPrice.value -= downPayment.value;
-  yearlyPrice = monthlyPayments.value * 12;
-  ratePrice = (yearlyPrice * rate.value) / 100;
-  yearlyPrice += ratePrice;
-  yearsOutput.textContent = ` ${(totalPrice.value / yearlyPrice).toFixed(
-    1
-  )} years`;
+  let totalPriceValue = parseInt(totalPrice.value),
+    downPaymentValue = parseInt(downPayment.value),
+    monthlyPaymentsValue = parseInt(monthlyPayments.value),
+    rateValue = parseInt(rate.value);
 
-  totalPrice.value = "";
-  downPayment.value = "";
-  monthlyPayments.value = "";
-  rate.value = "";
+  console.log(totalPriceValue);
+  console.log(downPaymentValue);
+  console.log(monthlyPaymentsValue);
+  console.log(rateValue);
+
+  totalPriceValue -= downPaymentValue;
+  console.log(totalPriceValue);
+  yearlyPrice = monthlyPaymentsValue * 12;
+  console.log(yearlyPrice);
+
+  // ratePrice = (yearlyPrice * rate.value) / 100;
+  // yearlyPrice += ratePrice;
+
+  // yearsOutput.textContent = ` ${(totalPrice.value / yearlyPrice).toFixed(
+  //   1
+  // )} years`;
+
+  // totalPrice.value = "";
+  // downPayment.value = "";
+  // monthlyPayments.value = "";
+  // rate.value = "";
 });
+
+ */
