@@ -38,8 +38,6 @@ form.addEventListener("submit", (e) => {
 
 // Assignment B
 
-/*
- 
 const form2 = document.querySelector(".complex-installment-form");
 
 form2.addEventListener("submit", (e) => {
@@ -52,7 +50,6 @@ form2.addEventListener("submit", (e) => {
     monthlyPayments = document.querySelector("#assignment-b-monthly"),
     rate = document.querySelector("#assignment-b-rate"),
     yearsOutput = document.querySelector(".years-num"),
-    ratePrice = 0,
     yearlyPrice = 0;
 
   let totalPriceValue = parseInt(totalPrice.value),
@@ -60,27 +57,18 @@ form2.addEventListener("submit", (e) => {
     monthlyPaymentsValue = parseInt(monthlyPayments.value),
     rateValue = parseInt(rate.value);
 
-  console.log(totalPriceValue);
-  console.log(downPaymentValue);
-  console.log(monthlyPaymentsValue);
-  console.log(rateValue);
-
   totalPriceValue -= downPaymentValue;
-  console.log(totalPriceValue);
-  yearlyPrice = monthlyPaymentsValue * 12;
-  console.log(yearlyPrice);
+  rateValue += 100;
+  rateValue /= 100;
+  totalPriceValue *= rateValue;
+  totalPriceValue / monthlyPaymentsValue;
+  yearlyPrice = totalPriceValue / monthlyPaymentsValue;
+  yearsOutput.textContent = ` ${parseFloat((yearlyPrice /= 12)).toPrecision(
+    2
+  )} years`;
 
-  // ratePrice = (yearlyPrice * rate.value) / 100;
-  // yearlyPrice += ratePrice;
-
-  // yearsOutput.textContent = ` ${(totalPrice.value / yearlyPrice).toFixed(
-  //   1
-  // )} years`;
-
-  // totalPrice.value = "";
-  // downPayment.value = "";
-  // monthlyPayments.value = "";
-  // rate.value = "";
+  totalPrice.value = "";
+  downPayment.value = "";
+  monthlyPayments.value = "";
+  rate.value = "";
 });
-
- */
