@@ -2,6 +2,23 @@
 
 const form = document.querySelector(".installment-form");
 
+const calculateMonthlyPayments = (totalPrice, downPayment, rate, years) => {
+  parseInt(totalPrice);
+  parseInt(downPayment);
+  parseInt(rate);
+  parseInt(years);
+
+  totalPrice -= downPayment;
+  rate *= years;
+  rate += 100;
+  rate /= 100;
+  totalPrice *= rate;
+  const monthsCount = years * 12,
+    monthlyPrice = (totalPrice / monthsCount).toFixed(2);
+
+  return monthlyPrice;
+};
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -11,61 +28,60 @@ form.addEventListener("submit", (e) => {
     downPayment = document.querySelector("#downPayment"),
     rate = document.querySelector("#rate"),
     years = document.querySelector("#years"),
-    output = document.querySelector(".monthly-payment-num"),
-    monthsCount = 0,
-    monthlyPrice = 0;
+    output = document.querySelector(".monthly-payment-num");
 
-  let totalPriceValue = parseInt(totalPrice.value),
-    downPaymentValue = parseInt(downPayment.value),
-    rateValue = parseInt(rate.value),
-    yearsValue = parseInt(years.value);
-
-  totalPriceValue -= downPaymentValue;
-  rateValue *= yearsValue;
-  rateValue += 100;
-  rateValue /= 100;
-  totalPriceValue *= rateValue;
-  monthsCount = yearsValue * 12;
-  monthlyPrice = (totalPriceValue / monthsCount).toFixed(2);
+  output.textContent = ` ${calculateMonthlyPayments(
+    totalPrice.value,
+    downPayment.value,
+    rate.value,
+    years.value
+  )} /month`;
 
   totalPrice.value = "";
   downPayment.value = "";
   rate.value = "";
   years.value = "";
-
-  output.textContent = ` ${monthlyPrice} /month`;
 });
 
 // Assignment B
 
 const form2 = document.querySelector(".complex-installment-form");
 
+const calculateInstallmentYears = (
+  totalPrice,
+  downPayment,
+  monthlyPayments,
+  rate
+) => {
+  totalPrice = parseInt(totalPrice);
+  downPayment = parseInt(downPayment);
+  monthlyPayments = parseInt(monthlyPayments);
+  rate = parseInt(rate);
+
+  totalPrice -= downPayment;
+  rate += 100;
+  rate /= 100;
+  totalPrice *= rate;
+  let yearlyPrice = totalPrice / monthlyPayments;
+
+  return ` ${parseFloat((yearlyPrice /= 12)).toPrecision(2)} years`;
+};
+
 form2.addEventListener("submit", (e) => {
   e.preventDefault();
-
-  // geting inputs values
 
   let totalPrice = document.querySelector("#assignment-b-totalPrice"),
     downPayment = document.querySelector("#assignment-b-downPayment"),
     monthlyPayments = document.querySelector("#assignment-b-monthly"),
     rate = document.querySelector("#assignment-b-rate"),
-    yearsOutput = document.querySelector(".years-num"),
-    yearlyPrice = 0;
+    yearsOutput = document.querySelector(".years-num");
 
-  let totalPriceValue = parseInt(totalPrice.value),
-    downPaymentValue = parseInt(downPayment.value),
-    monthlyPaymentsValue = parseInt(monthlyPayments.value),
-    rateValue = parseInt(rate.value);
-
-  totalPriceValue -= downPaymentValue;
-  rateValue += 100;
-  rateValue /= 100;
-  totalPriceValue *= rateValue;
-  totalPriceValue / monthlyPaymentsValue;
-  yearlyPrice = totalPriceValue / monthlyPaymentsValue;
-  yearsOutput.textContent = ` ${parseFloat((yearlyPrice /= 12)).toPrecision(
-    2
-  )} years`;
+  yearsOutput.textContent = calculateInstallmentYears(
+    totalPrice.value,
+    downPayment.value,
+    monthlyPayments.value,
+    rate.value
+  );
 
   totalPrice.value = "";
   downPayment.value = "";
